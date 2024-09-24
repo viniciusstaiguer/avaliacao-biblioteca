@@ -1,8 +1,7 @@
 # Avaliação Front-End (Vue/Prime)
 
 ## Objetivo
-Esta avaliação tem como objetivo a criação de uma página pública de inscrição para atletas em eventos, onde os mesmos podem escolher qual(is) eventos desejam participar.
-Caso o usuário deseje se inscrever o sistema deverá fazer o controle do fluxo de seleção do evento, preenchimento do formulário da inscrição com seleção das modalidades desejadas no determinado evento, e de acordo com as modalidades selecionadas, fazer o cálculo do valor total da inscrição e bem como a confirmação da inscrição.
+Esta avaliação tem como objetivo avaliar a capacidade técnica em tecnologias utilizadas para desenvolvimento front-end.
 
 ## Projeto/Repositório (GitHub)
 - O link para clone do repositório base com os pacotes instalados está disponível no link [GitHub](https://github.com/ludhriq/avaliacao-biblioteca).
