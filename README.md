@@ -5,7 +5,7 @@ Esta avaliação tem como objetivo a criação de uma página pública de inscri
 Caso o usuário deseje se inscrever o sistema deverá fazer o controle do fluxo de seleção do evento, preenchimento do formulário da inscrição com seleção das modalidades desejadas no determinado evento, e de acordo com as modalidades selecionadas, fazer o cálculo do valor total da inscrição e bem como a confirmação da inscrição.
 
 ## Projeto/Repositório (GitHub)
-- O link para clone do repositório base com os pacotes instalados está disponível no link [GitHub](https://github.com/ludhriq/avaliacao-inga).
+- O link para clone do repositório base com os pacotes instalados está disponível no link [GitHub](https://github.com/ludhriq/avaliacao-biblioteca).
 - O projeto está configurado com os seguintes aspectos/pacotes:
   - Javascript
   - ViteJs (Servidor Local)
