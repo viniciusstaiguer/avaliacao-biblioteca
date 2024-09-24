@@ -30,7 +30,8 @@ Esta avaliação tem como objetivo avaliar a capacidade técnica em tecnologias 
   - Criar botões de redirecionamento para o `Formulário do Livro #2`, `Página do Autor #3` e `Página da Editora #4`
   - Criar botão para redirecionamento para cadastrar um novo livro
   - Possibilidade de ordenar os livros por `ano de publicação`, `id`, `nome do autor`. Em ordem `Crescente` e `Decrescente`
-  - Filtro de pesquisa por `Título`, `Autor` e Editora. (case insensitive)
+  - Filtro de pesquisa por `Título`, `Autor` e Editora. (case insensitive).
+  - Ao clicar em um livro, abrir uma modal exibindo a foto em uma resolução maior, título, autor, editora, ano de publicação e sinopse do livro.
 
 #### #2) Formulário de Livro `/livros/:id(novo|[0-9]+)`
 
