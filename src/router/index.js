@@ -25,6 +25,18 @@ const router = createRouter({
                 name: 'livros',
                 component: () => import('../components/views/Books.vue')
               },
+              {
+                path: '/livros/novo',
+                name: 'LivroNovo',
+                component: () => import('@/components/views/LivroForm.vue'),
+                props: { id: 'novo' } // forçamos o id como 'novo'
+              },
+              {
+                path: '/livros/:id',
+                name: 'LivroForm',
+                component: () => import('@/components/views/LivroForm.vue'),
+                props: true
+              }
             ]
         },
         

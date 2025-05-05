@@ -22,9 +22,9 @@ const menus = [
         path: '/livros'
     },
     {
-        label: 'Autores',
-        icon: 'pi pi-user',
-        path: '/autores'
+        label: 'Formulário de Livro',
+        icon: 'pi pi-file',
+        path: '/livros/novo'
     },
 ];
 

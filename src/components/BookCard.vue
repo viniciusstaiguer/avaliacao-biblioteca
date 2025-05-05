@@ -1,4 +1,8 @@
 <script setup>
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
 const props = defineProps({
     book: Object,
     author: String,
@@ -9,10 +13,22 @@ const emit = defineEmits(['click'])
 const onClick = () => {
     emit('click', props.book)
 }
+const goToEdit = () => {
+  router.push(`/livros/${props.book.id}`)
+}
 </script>
 <template>
-    <div class="cursor-pointer bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden flex flex-col"
+    <div class="relative cursor-pointer bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden flex flex-col"
         @click="onClick">
+
+        <button
+            class="absolute top-2 right-2 bg-white p-2 rounded-full shadow hover:bg-gray-100 z-10"
+            @click.stop="goToEdit"
+            title="Editar livro"
+            >
+            <i class="pi pi-pencil text-gray-700"></i>
+        </button>
+
         <!-- Capa -->
         <div class="w-full h-64 bg-gray-100 flex items-center justify-center">
             <img :src="book.cover" :alt="book.title"
