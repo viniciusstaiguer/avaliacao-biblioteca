@@ -177,7 +177,7 @@
             "authorId": 9,
             "publisherId": 5,
             "year": 1847,
-            "cover": "https://www.martinclaret.com.br/wp-content/uploads/2017/04/51gJvdYl-9L.jpg",
+            "cover": "https://images.tcdn.com.br/img/img_prod/1222279/o_morro_dos_ventos_uivantes_autor_emily_bronte_ed_principis_p68_5192_1_4de13a1989fc77f967617f7fb4c1b03d.jpg",
             "sinopsis": "Sed vitae justo condimentum, sagittis sem ut, pellentesque lectus."
         },
         {
@@ -186,7 +186,7 @@
             "authorId": 10,
             "publisherId": 1,
             "year": 1951,
-            "cover": "https://estadodaarte.estadao.com.br/wp-content/uploads/2019/06/apanhador-no-campo-de-centeio-todavia-e1561326283902.jpg",
+            "cover": "https://m.media-amazon.com/images/I/51Ooch+98bL._SY445_SX342_.jpg",
             "sinopsis": "Aliquam erat volutpat. Nulla facilisi."
         },
         {
@@ -267,7 +267,7 @@
             "authorId": 11,
             "publisherId": 2,
             "year": 1826,
-            "cover": "https://example.com/capa20.jpg",
+            "cover": "https://images1.penguinrandomhouse.com/cover/9780140390247",
             "sinopsis": "Praesent bibendum massa sed magna gravida, id tincidunt dui convallis."
         },
         {
@@ -294,7 +294,7 @@
             "authorId": 15,
             "publisherId": 5,
             "year": 1784,
-            "cover": "https://example.com/capa23.jpg",
+            "cover": "https://azopera.org/sites/default/files/styles/news-wide_850wide/public/Beaumarchais.jpg?itok=aaydcNMX",
             "sinopsis": "Phasellus posuere nunc sit amet neque vehicula, vitae fringilla lectus hendrerit."
         },
         {
