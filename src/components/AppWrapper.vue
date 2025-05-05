@@ -26,6 +26,16 @@ const menus = [
         icon: 'pi pi-file',
         path: '/livros/novo'
     },
+    {
+    label: 'Autores',
+    icon: 'pi pi-user',
+    path: '/autores'
+  },
+  {
+    label: 'Editoras',
+    icon: 'pi pi-building',
+    path: '/editoras'
+  }
 ];
 
 </script>
