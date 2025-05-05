@@ -1,7 +1,19 @@
 <script setup>
+import { computed, ref } from 'vue'
 import { useStore } from '@/stores/store.js'
 
 const { state, getters } = useStore()
+const searchQuery = ref('')
+const filteredBooks = computed(() => {
+  const query = searchQuery.value.toLowerCase()
+  return state.books.filter(book => {
+    const title = book.title?.toLowerCase() || ''
+    const author = getters.getAuthorById(book.authorId)?.name.toLowerCase() || ''
+    const publisher = getters.getPublisherById(book.publisherId)?.name.toLowerCase() || ''
+
+    return title.includes(query) || author.includes(query) || publisher.includes(query)
+  })
+})
 </script>
 
 <template>
@@ -14,10 +26,14 @@ const { state, getters } = useStore()
         <!-- Grid de Cards -->
         <main class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
             <div class="col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4 mb-4">
-                <input type="text" placeholder="Pesquisar..." class="mb-4 p-2 border rounded"
-                    v-model="state.searchQuery" />
+                <input
+                    type="text"
+                    placeholder="Pesquisar por título, autor ou editora..."
+                    class="mb-4 p-2 border rounded w-full"
+                    v-model="searchQuery"
+                />
             </div>
-            <div v-for="book in state.books" :key="book.id"
+            <div v-for="book in filteredBooks" :key="book.id"
                 class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden flex flex-col">
                 <!-- Capa -->
                 <div class="w-full h-64 bg-gray-100 flex items-center justify-center">
