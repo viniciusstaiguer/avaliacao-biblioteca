@@ -15,12 +15,16 @@ const router = createRouter({
             name: 'wrapper',
             component: () => import('../components/AppWrapper.vue'),
             children: [
-
               {
                 path: 'home',
                 name: 'home',
                 component: () => import('../components/Home.vue')
-              }
+              },
+              {
+                path: 'livros',
+                name: 'livros',
+                component: () => import('../components/Books.vue')
+              },
             ]
         },
         
