@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue'
 import { useStore } from '@/stores/store.js'
 import BookModal from '@/components/BookModal.vue'
+import BookCard from '@/components/BookCard.vue'
 
 const { state, getters } = useStore()
 const searchQuery = ref('')
@@ -46,28 +47,14 @@ const closeModal = () => {
                     v-model="searchQuery"
                 />
             </div>
-            <div v-for="book in filteredBooks" :key="book.id" @click="openModal(book)"
-                class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden flex flex-col">
-                <!-- Capa -->
-                <div class="w-full h-64 bg-gray-100 flex items-center justify-center">
-                    <img :src="book.cover" :alt="book.title"
-                        class="max-h-full object-contain transition-transform duration-300 hover:scale-105" />
-                </div>
-
-                <!-- Informações -->
-                <div class="p-4 flex flex-col gap-2">
-                    <div class="flex flex-row justify-between items-center">
-                        <h2 class="text-lg font-semibold text-gray-800 line-clamp-2">{{ book.title }}</h2>
-                        <span class="text-lg font-semibold text-gray-800">#{{ book.id }}</span>
-                    </div>
-                    <div class="text-sm text-gray-600">
-                        <p><strong>Ano:</strong> {{ book.year }}</p>
-                        <p><strong>Autor:</strong> {{ getters.getAuthorById(book.authorId)?.name }}</p>
-                        <p><strong>Editora:</strong> {{ getters.getPublisherById(book.publisherId)?.name }}</p>
-                    </div>
-                    
-                </div>
-            </div>
+            <BookCard
+                v-for="book in filteredBooks"
+                :key="book.id"
+                :book="book"
+                :author="getters.getAuthorById(book.authorId)?.name"
+                :publisher="getters.getPublisherById(book.publisherId)?.name"
+                @click="openModal"
+            />
         </main>
         <BookModal
             v-if="selectedBook"
