@@ -1,29 +1,60 @@
 <script setup>
-    import { RouterView } from 'vue-router';
-    import Toast from 'primevue/toast';
-    import { isArray } from '@/utils/utils.js';
+import { ref } from 'vue';
+import { RouterView } from 'vue-router';
+import Toast from 'primevue/toast';
+import { isArray } from '@/utils/utils.js';
 
-    const menus = [
+const menuOpen = ref(true)
 
-        {
-            label: 'Home',
-            icon: 'pi pi-home',
-            path: '/home'
-        },
-    ];
+const toggleMenu = () => {
+    menuOpen.value = !menuOpen.value
+}
+const menus = [
+
+    {
+        label: 'Home',
+        icon: 'pi pi-home',
+        path: '/home'
+    },
+    {
+        label: 'Livros',
+        icon: 'pi pi-book',
+        path: '/livros'
+    },
+    {
+        label: 'Autores',
+        icon: 'pi pi-user',
+        path: '/autores'
+    },
+];
 
 </script>
 <template>
     <div class="flex flex-col w-full h-screen">
-        <div class="w-full p-3 text-3xl border-b-2 h-16 flex items-center">
-            Header
+        <!-- Topbar -->
+        <div class="w-full p-3 text-2xl font-semibold border-b flex items-center justify-between">
+            Book Mark
         </div>
-        <div class="flex h-full">
-            <div class="w-32 border-r-2 h-full px-3 py-4">
-                <ul class="menu space-y-2">
+
+        <!-- Layout principal -->
+        <div class="flex h-full relative">
+
+            <!-- Botão sempre visível e posicionado conforme estado do menu -->
+            <button @click="toggleMenu"
+                class="absolute top-4 z-20 bg-white border border-gray-300 rounded-full shadow p-2 text-xl"
+                :class="menuOpen ? 'left-48' : 'left-0'">
+                <i :class="menuOpen ? 'pi pi-angle-left' : 'pi pi-angle-right'" />
+            </button>
+
+            <!-- Menu lateral responsivo -->
+            <div v-show="menuOpen"
+                class="absolute z-10 bg-white w-52 h-full px-3 py-4 shadow-md border-r lg:static lg:block">
+                <ul class="menu space-y-2 mt-10">
                     <RouterLink
                         :to="menu.path"
-                        v-for="menu of menus"
+                        v-for="menu in menus"
+                        :key="menu.path"
+                        @click="menuOpen = false"
                     >
                         <li class="menu-item">
                             <i :class="menu.icon" />
@@ -32,50 +63,52 @@
                     </RouterLink>
                 </ul>
             </div>
+
+            <!-- Conteúdo -->
             <div class="p-4 w-full h-full">
                 <RouterView />
             </div>
         </div>
-    </div>
 
-    <Toast position="bottom-center">
-        <template #message="{ message }">
-            <span :class="[
-                'p-toast-message-icon',
-                'pi',
-                {
-                    'pi-check': message.severity === 'success',
-                },
-                {
-                    'pi-exclamation-triangle':
-                        message.severity === 'warning',
-                },
-                { 'pi-times': message.severity === 'error' },
-                {
-                    'pi-info-circle': message.severity === 'info',
-                },
-            ]"></span>
-            <div class="p-toast-message-text">
-                <span class="p-toast-summary">{{ message.summary }}</span>
-                <div class="p-toast-detail">
-                    <template v-if="!isArray(message.detail)">
-                        <span class="text-black">{{ message.detail }}</span>
-                    </template>
-                    <p
-                        v-else
-                        class="m-0"
-                        v-for="(item, index) in message.detail"
-                        :key="index"
-                    >
-                        {{ item }}
-                    </p>
+        <!-- Toast -->
+        <Toast position="bottom-center">
+            <template #message="{ message }">
+                <span :class="[
+                    'p-toast-message-icon',
+                    'pi',
+                    {
+                        'pi-check': message.severity === 'success',
+                    },
+                    {
+                        'pi-exclamation-triangle':
+                            message.severity === 'warning',
+                    },
+                    { 'pi-times': message.severity === 'error' },
+                    {
+                        'pi-info-circle': message.severity === 'info',
+                    },
+                ]"></span>
+                <div class="p-toast-message-text">
+                    <span class="p-toast-summary">{{ message.summary }}</span>
+                    <div class="p-toast-detail">
+                        <template v-if="!isArray(message.detail)">
+                            <span class="text-black">{{ message.detail }}</span>
+                        </template>
+                        <p 
+                            v-else
+                            class="m-0"
+                            v-for="(item, index) in message.detail"
+                            :key="index"
+                        >
+                            {{ item }}
+                        </p>
+                    </div>
                 </div>
-            </div>
-        </template>
-    </Toast>
+            </template>
+        </Toast>
+    </div>
 </template>
 <style scoped lang="less">
-
 .menu {
 
     &-item {
