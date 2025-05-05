@@ -1,9 +1,13 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { useStore } from '@/stores/store.js'
+import BookModal from '@/components/BookModal.vue'
 
 const { state, getters } = useStore()
 const searchQuery = ref('')
+const selectedBook = ref(null)
+const showModal = ref(false)
+
 const filteredBooks = computed(() => {
   const query = searchQuery.value.toLowerCase()
   return state.books.filter(book => {
@@ -14,6 +18,15 @@ const filteredBooks = computed(() => {
     return title.includes(query) || author.includes(query) || publisher.includes(query)
   })
 })
+
+const openModal = (book) => {
+  selectedBook.value = book
+  showModal.value = true
+}
+const closeModal = () => {
+  showModal.value = false
+  selectedBook.value = null
+}
 </script>
 
 <template>
@@ -33,7 +46,7 @@ const filteredBooks = computed(() => {
                     v-model="searchQuery"
                 />
             </div>
-            <div v-for="book in filteredBooks" :key="book.id"
+            <div v-for="book in filteredBooks" :key="book.id" @click="openModal(book)"
                 class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden flex flex-col">
                 <!-- Capa -->
                 <div class="w-full h-64 bg-gray-100 flex items-center justify-center">
@@ -52,9 +65,17 @@ const filteredBooks = computed(() => {
                         <p><strong>Autor:</strong> {{ getters.getAuthorById(book.authorId)?.name }}</p>
                         <p><strong>Editora:</strong> {{ getters.getPublisherById(book.publisherId)?.name }}</p>
                     </div>
-
+                    
                 </div>
             </div>
         </main>
+        <BookModal
+            v-if="selectedBook"
+            :show="showModal"
+            :book="selectedBook"
+            :author="getters.getAuthorById(selectedBook.authorId)?.name"
+            :publisher="getters.getPublisherById(selectedBook.publisherId)?.name"
+            @close="closeModal"
+            />
     </div>
 </template>

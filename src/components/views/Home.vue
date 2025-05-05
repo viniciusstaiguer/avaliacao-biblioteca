@@ -6,7 +6,7 @@ import { useToast } from 'primevue/usetoast';
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
 import InputNumber from 'primevue/inputnumber';
-import FormItem from './FormItem.vue';
+import FormItem from '@/components/FormItem.vue';
 
 const formId = 'example';
 const counter = ref(0);
